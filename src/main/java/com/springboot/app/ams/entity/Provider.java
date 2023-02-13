@@ -1,10 +1,14 @@
 package com.springboot.app.ams.entity;
 
+import java.util.List;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.NotBlank;
 
 @Entity
@@ -53,11 +57,22 @@ public class Provider {
    public String getAdress() {
 	   return adress ;
    }
-   public void setEmail(String email) {
+      public void setEmail(String email) {
 	   this.email=email;
    }
    public String getEmail() {
 	   return email ;
    }
+   @OneToMany(cascade=CascadeType.ALL, mappedBy = "provider")
+   private List<Article> articles;
+
+	public List<Article> getArticles() {
+		return articles;
+	}
+
+	public void setArticles(List<Article> articles) {
+		this.articles = articles;
+	}
+
    }
 
